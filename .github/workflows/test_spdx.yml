@@ -55,6 +55,10 @@ jobs:
           pip install -r .github/workflows/requirements_test.txt
           pip install cyclonedx-bom
           cyclonedx-py -e --format json -o cyclonedx_v3_1.json
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cyclonedx_v3
+          path: cyclonedx_v3_1.json
   
   test_spdx_v4:
     name: Test_spdx_v4
@@ -78,3 +82,7 @@ jobs:
           git checkout dev/4.x.x
           pip install -e .
           cyclonedx-py -e --format json -o cyclonedx_v4_1.json 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cyclonedx_v4
+          path: cyclonedx_v4_1.json
