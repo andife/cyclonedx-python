@@ -52,7 +52,7 @@ jobs:
           architecture: 'x64'
       - name: Install deps
         run: |
-          pip install -r cyclonedx-python\.github\workflows\requirements_test.txt
+          pip install -r ./cyclonedx-python/.github/workflows/requirements_test.txt
           pip install cyclonedx-bom
           cyclonedx-py -e --format json -o cyclonedx_v3_1.json
   
