@@ -1,0 +1,16 @@
+addict==2.4.0
+adict==0.1.7
+grpcio==1.56.2
+grpcio-reflection==1.48.2
+opencv-python==4.8.0.76
+openvino==2023.0.1
+openvino-dev==2023.0.1
+openvino-telemetry==2023.1.0
+pillow==10.0.0
+prometheus-client==0.17.1
+protobuf==3.20.3
+pyyaml==6.0.1
+requests==2.31.0
+scipy==1.11.1
+texttable==1.6.7
+tqdm==4.66.0
