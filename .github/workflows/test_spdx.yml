@@ -41,6 +41,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v3
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERISON_DEFAULT }}
+          architecture: 'x64'
+      - name: Install deps
+        run: |
+          pip install -r cyclonedx-python\.github\workflows\requirements_test.txt
+          pip install cyclonedx-bom
+          cyclonedx-py -e --format json -o cyclonedx_v3_1.json
+  
+  test_spdx_v4:
+    name: Test_spdx_v4
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v3
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
@@ -50,5 +73,8 @@ jobs:
       - name: Install deps
         run: |
           pip install -r requirements_test.txt
-          pip install cyclonedx-bom
-          cyclonedx-py -e --format json -o cyclonedx_v3_1.json
+          git clone https://github.com/CycloneDX/cyclonedx-python.git
+          cd cyclonedx-python
+          git checkout dev/4.x.x
+          pip install -e .
+          cyclonedx-py -e --format json -o cyclonedx_v4_1.json 
