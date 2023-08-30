@@ -80,6 +80,8 @@ jobs:
 
       - name: Install Cyclondx v4
         run: |
+          git clone https://github.com/CycloneDX/cyclonedx-python.git -o forCycloneDxv4
+          cd forCycloneDxv4
           git checkout dev/4.x.x
           pip install -e .
       
