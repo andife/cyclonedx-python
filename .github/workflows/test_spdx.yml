@@ -82,14 +82,14 @@ jobs:
         run: |
           git clone https://github.com/CycloneDX/cyclonedx-python.git forCycloneDxv4
           cd forCycloneDxv4
-          git checkout dev/4.x.x
+          git checkout feature/environment-license-spdx
           pip install -e .
       
       - name: Run CycloneDXpy
         run: |
-          cyclonedx-py -X -e --format json -o cyclonedx_v4_1.json 
+          cyclonedx-py -X -e --format json -o tool_v4.cdx.json 
       
       - uses: actions/upload-artifact@v3
         with:
-          name: cyclonedx_v4
-          path: cyclonedx_v4_1.json
+          name: tool_v4
+          path: tool_v4.cdx.json 
