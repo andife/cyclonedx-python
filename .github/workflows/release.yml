@@ -51,17 +51,17 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           fetch-depth: 0  # action `relekang/python-semantic-release` requires all git history
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1 # v4.7.0
         with:
           python-version: ${{ env.PYTHON_VERISON }}
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
-        uses: Gr1N/setup-poetry@v8
+        uses: Gr1N/setup-poetry@15821dc8a61bc630db542ae4baf6a7c19a994844 # v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: pre-hook
@@ -74,7 +74,7 @@ jobs:
         id: semantic-release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         # see https://github.com/relekang/python-semantic-release
-        uses: relekang/python-semantic-release@v7.34.6
+        uses: relekang/python-semantic-release@c633414ae2a5518d21b852be66eac1cbc2dd8e87 # v7.34.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository_username: __token__
@@ -97,7 +97,7 @@ jobs:
           !failure() && !cancelled() &&
           steps.after-release.outputs.released
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -123,7 +123,7 @@ jobs:
     steps:
       - name: Checkout code (v${{ env.VERSION }})
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           ref: v${{ env.VERSION }}
       - name: setup dirs
@@ -132,7 +132,7 @@ jobs:
           mkdir "$DIST_DIR"
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -160,7 +160,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
           name: ${{ env.ARTIFACT_DOCKER_SBOM }}
           path: ${{ env.REPORTS_DIR }}/*.bom.*
